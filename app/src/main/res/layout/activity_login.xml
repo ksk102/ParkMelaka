@@ -37,10 +37,11 @@
         android:layout_alignEnd="@+id/editEmail"/>
 
     <TextView
-        android:text="Please check your credential again!"
         android:id="@+id/textError"
         android:visibility="invisible"
         android:textColor="#FF0000"
+        android:textSize="12sp"
+        android:textStyle="italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editPassword"
@@ -52,7 +53,6 @@
     <Button
         android:text="Login"
         android:id="@+id/buttonLogin"
-        android:onClick="loginPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textError"
@@ -67,5 +67,13 @@
         android:layout_below="@+id/buttonLogin"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
 </RelativeLayout>
