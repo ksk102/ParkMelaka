@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text = "Login"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/textLogin" />
+
+    <EditText
+        android:id = "@+id/editEmail"
+        android:hint = "youremail@address.com"
+        android:focusable = "true"
+        android:textColorHighlight = "#ff7eff15"
+        android:layout_marginTop = "46dp"
+        android:layout_below = "@+id/textLogin"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_alignParentLeft = "true"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true" />
+    <EditText
+        android:id="@+id/editPassword"
+        android:hint="Password"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editEmail"
+        android:layout_alignEnd="@+id/editEmail"/>
+
+    <TextView
+        android:text="Please check your credential again!"
+        android:id="@+id/textError"
+        android:visibility="invisible"
+        android:textColor="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editPassword"
+        android:layout_alignEnd="@+id/editPassword"/>
+
+    <Button
+        android:text="Login"
+        android:id="@+id/buttonLogin"
+        android:onClick="loginPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textError"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Register"
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
