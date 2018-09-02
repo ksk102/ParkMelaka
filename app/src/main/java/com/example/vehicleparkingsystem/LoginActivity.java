@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.vehicleparkingsystem.utils.SaveSharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,12 +29,22 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
         setContentView(R.layout.activity_login);
 
         Button loginButton;
+        RelativeLayout loginForm;
 
         loginButton = findViewById(R.id.buttonLogin);
         emailEdit = findViewById(R.id.editEmail);
         passwordEdit = findViewById(R.id.editPassword);
         errorText  = findViewById(R.id.textError);
         progressBar = findViewById(R.id.progressBar);
+        loginForm = findViewById(R.id.formLogin);
+
+        if(SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
+            Intent intent = new Intent(getApplicationContext(), ParkingActivity.class);
+            startActivity(intent);
+        }
+        else {
+            loginForm.setVisibility(View.VISIBLE);
+        }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,11 +88,15 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
 
         if(success.equals("1")){
             if(userExist.equals("1")){
+
+                SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
+
                 Intent intent=new Intent(this,ParkingActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 this.startActivity(intent);
+
                 this.errorText.setText("");
                 this.errorText.setVisibility(View.GONE);
-                finish();
             }
             else{
                 this.errorText.setText(message);

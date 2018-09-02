@@ -1,5 +1,6 @@
 package com.example.vehicleparkingsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.vehicleparkingsystem.utils.SaveSharedPreference;
 
 public class ParkingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,7 +59,7 @@ public class ParkingActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            // TODO: logout
+            logout();
             return true;
         }
 
@@ -75,11 +78,19 @@ public class ParkingActivity extends AppCompatActivity
         } else if (id == R.id.nav_history) {
 
         } else if (id == R.id.nav_logout) {
-
+            logout();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void logout(){
+        SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
