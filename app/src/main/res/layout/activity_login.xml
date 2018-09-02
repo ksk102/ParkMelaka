@@ -13,6 +13,7 @@
     <EditText
         android:id = "@+id/editEmail"
         android:hint = "youremail@address.com"
+        android:inputType="textEmailAddress"
         android:focusable = "true"
         android:textColorHighlight = "#ff7eff15"
         android:layout_marginTop = "46dp"

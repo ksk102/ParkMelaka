@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
                 this.startActivity(intent);
                 this.errorText.setText("");
                 this.errorText.setVisibility(View.GONE);
+                finish();
             }
             else{
                 this.errorText.setText(message);
