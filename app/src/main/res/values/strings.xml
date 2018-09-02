@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ParkMelaka</string>
+    <string name="title_activity_parking">ParkMelaka</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_logout">Logout</string>
+
+    <string name="nav_parking">Parking</string>
+    <string name="nav_parking_history">Parking History</string>
 </resources>
