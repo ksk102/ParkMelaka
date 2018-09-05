@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
             if(userExist != null){
 
                 SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
+                SaveSharedPreference.setLoggedInId(getApplicationContext(), userExist);
 
                 Intent intent=new Intent(this,ParkingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

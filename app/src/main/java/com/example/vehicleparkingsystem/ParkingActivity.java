@@ -130,7 +130,7 @@ public class ParkingActivity extends AppCompatActivity
             }
         }
         else{
-            userId = null;
+            userId = SaveSharedPreference.getLoggedId(getApplicationContext());
         }
 
         HashMap<String, String> params = new HashMap<>();
