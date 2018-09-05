@@ -8,4 +8,12 @@
     tools:context=".ParkingActivity"
     tools:showIn="@layout/app_bar_parking">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
 </android.support.constraint.ConstraintLayout>

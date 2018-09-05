@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
                 userExist = object.getString("user_exist");
             }
             catch(JSONException e){
-                userExist = "0";
+                userExist = null;
             }
         }
         catch(JSONException e){
@@ -87,12 +87,16 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
         }
 
         if(success.equals("1")){
-            if(userExist.equals("1")){
+            if(userExist != null){
 
                 SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
 
                 Intent intent=new Intent(this,ParkingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("userId", userExist);
+                intent.putExtras(bundle);
                 this.startActivity(intent);
 
                 this.errorText.setText("");
