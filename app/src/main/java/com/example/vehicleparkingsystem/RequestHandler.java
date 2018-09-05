@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -20,7 +21,7 @@ public class RequestHandler {
     // This method is taking two arguments
     // First argument is the URL of the script to which we will send the request
     // Other is an HashMap with name value pairs containing the data to be send with the request
-    public String sendPostRequest(String requestURL, HashMap<String, String> postDataParams){
+    public String sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
         // Creating a URL
         URL url;
 
@@ -64,7 +65,12 @@ public class RequestHandler {
                 }
             }
 
-        } catch (Exception e) {
+        }
+        catch(ConnectException e){
+            String returnString = "{\"success\":\"0\",\"message\":\"Login Failed! Please check your internet connection\"}";
+            return returnString;
+        }
+        catch (Exception e) {
             Log.e("log_tag", "Error in sendPostRequest " + e.toString());
         }
         return sb.toString();
