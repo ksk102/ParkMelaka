@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="10dp"
+        android:stretchColumns="2">
+        <TableRow>
+            <TextView
+                android:text="Time Now: "
+                android:layout_column="0"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextClock
+                android:id="@+id/textTime"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Car Plate Number: "
+                android:layout_column="0"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/textParkCarNumber"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Balance Available: "
+                android:layout_column="0"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/textParkBalance"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Parking Location: "
+                android:layout_column="0"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <Spinner
+                android:id="@+id/textParkLocation"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </TableRow>
+
+        <View
+            android:layout_height="50dp"/>
+
+        <TableRow>
+            <TextView
+                android:text="Parked"
+                android:layout_span="3"
+                android:gravity="center"
+                android:textSize="25dp"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="0:00 hours"
+                android:id="@+id/textTimeElapsed"
+                android:layout_span="3"
+                android:gravity="center"
+                android:textSize="50dp" />
+        </TableRow>
+
+        <View
+            android:layout_height="50dp"/>
+
+        <TableRow>
+            <Button
+                android:text="Start Parking"
+                android:id="@+id/buttonStart"
+                android:layout_margin="5dp"
+                android:layout_column="2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#81c784"
+                android:textColor="#FFFFFF"/>
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

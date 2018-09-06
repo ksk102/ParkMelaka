@@ -3,6 +3,8 @@ package com.example.vehicleparkingsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class ParkingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted {
@@ -52,9 +53,17 @@ public class ParkingActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Set the item selected on nav bar
+        navigationView.setCheckedItem(R.id.nav_parking);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // get user's details from database
         getUserDetail();
+
+        // show the content
+        Fragment fragment = new ParkingFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
     }
 
     @Override
@@ -63,7 +72,8 @@ public class ParkingActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            // super.onBackPressed();
+            moveTaskToBack(true);
         }
     }
 
@@ -95,14 +105,25 @@ public class ParkingActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment = null;
 
-        // TODO: slidebar navigation clicked
         if (id == R.id.nav_parking) {
-            // Handle the camera action
-        } else if (id == R.id.nav_history) {
-
-        } else if (id == R.id.nav_logout) {
+            fragment = new ParkingFragment();
+            setTitle("ParkMelaka");
+        }
+        else if (id == R.id.nav_history) {
+            fragment = new HistoryFragment();
+            setTitle("Parking History");
+        }
+        else if (id == R.id.nav_logout) {
             logout();
+        }
+
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        } else {
+            Log.e("log_tag", "Error in creating fragment");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -164,6 +185,9 @@ public class ParkingActivity extends AppCompatActivity
             this.userNameText.setText(userName);
             this.carNumberText.setText("Car Number: " + carNumber);
             this.balanceText.setText("Balance: RM" + balance);
+        }
+        else{
+            logout();
         }
     }
 }
