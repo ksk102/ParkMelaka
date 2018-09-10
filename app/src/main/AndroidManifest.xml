@@ -20,7 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParkingActivity"></activity>
+        <activity
+            android:name=".ParkingActivity"
+            android:label="@string/title_activity_parking"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.vehicleparkingsystem.ParkingActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
