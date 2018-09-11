@@ -1,97 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingTop="10dp"
-        android:stretchColumns="2">
-        <TableRow>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/card_layout"
+        android:background="@drawable/whiteback">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:text="Time Now: "
-                android:layout_column="0"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+
+                android:drawableStart="@drawable/ic_time"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="22dp"
+                android:text="  Time       : "
+                android:textColor="#161519"
+                android:textSize="22sp"/>
 
             <TextClock
                 android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="24dp"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-        </TableRow>
-        <TableRow>
+                android:paddingRight="5dp"
+                android:textSize="22sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:text="Car Plate Number: "
-                android:layout_column="0"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_car"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:text="  Car No    : "
+                android:textColor="#161519"
+                android:textSize="22sp"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/textParkCarNumber"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-        </TableRow>
-        <TableRow>
+                android:paddingRight="5dp"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:text="Balance Available: "
-                android:layout_column="0"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_money"
+                android:text="  Balance  : "
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:id="@+id/balance_label"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/textParkBalance"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-        </TableRow>
-        <TableRow>
+                android:paddingRight="5dp"
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
-                android:text="Parking Location: "
-                android:layout_column="0"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:drawableStart="@drawable/ic_location"
+                android:text="  Location : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
 
             <Spinner
                 android:id="@+id/textParkLocation"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-        </TableRow>
-
-        <View
-            android:layout_height="50dp"/>
-
-        <TableRow>
-            <TextView
-                android:text="Parked"
-                android:layout_span="3"
-                android:gravity="center"
-                android:textSize="25dp"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="0:00 hours"
-                android:id="@+id/textTimeElapsed"
-                android:layout_span="3"
-                android:gravity="center"
-                android:textSize="50dp" />
-        </TableRow>
-
-        <View
-            android:layout_height="50dp"/>
-
-        <TableRow>
-            <Button
-                android:text="Start Parking"
-                android:id="@+id/buttonStart"
-                android:layout_margin="5dp"
-                android:layout_column="2"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#81c784"
-                android:textColor="#FFFFFF"/>
-        </TableRow>
+                android:paddingLeft="0dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
 
-    </TableLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:text="Parked"
+        android:textColor="#141316"
+        android:layout_above="@id/textTimeElapsed"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textTimeElapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0:00 hours"
+        android:textColor="#141316"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="50sp"
+        />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_start"
+        android:padding="6dp"
+        android:text="Start Parking"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
 
 </RelativeLayout>

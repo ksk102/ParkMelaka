@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_face_round" />
+        app:srcCompat="@mipmap/ic_person" />
 
     <TextView
         android:text="User Name"
@@ -32,7 +32,7 @@
         android:text="Car Number: Unknown"
         android:id="@+id/textCarNumber"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:text="Balance: RM0.00"
