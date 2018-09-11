@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,7 +29,9 @@ public class ParkingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted {
 
     private ProgressBar progressBar;
-    TextView userNameText, carNumberText, balanceText;
+    private TextView userNameText, carNumberText, balanceText;
+    private ParkingFragment parkingFragment;
+    private HistoryFragment historyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +39,15 @@ public class ParkingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking);
 
+        // Header Nagigation Bar
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerNavView = navigationView.getHeaderView(0);
 
+        // Header Navigation Bar items
         userNameText = headerNavView.findViewById(R.id.textUserName);
         carNumberText = headerNavView.findViewById(R.id.textCarNumber);
         balanceText = headerNavView.findViewById(R.id.textBalance);
+
         progressBar = findViewById(R.id.progressBar);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -61,9 +67,9 @@ public class ParkingActivity extends AppCompatActivity
         getUserDetail();
 
         // show the content
-        Fragment fragment = new ParkingFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        parkingFragment = new ParkingFragment();
+        historyFragment = new HistoryFragment();
+        displayParkingFragment();
     }
 
     @Override
@@ -105,25 +111,17 @@ public class ParkingActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
 
         if (id == R.id.nav_parking) {
-            fragment = new ParkingFragment();
             setTitle("ParkMelaka");
+            displayParkingFragment();
         }
         else if (id == R.id.nav_history) {
-            fragment = new HistoryFragment();
             setTitle("Parking History");
+            displayHistoryFragment();
         }
         else if (id == R.id.nav_logout) {
             logout();
-        }
-
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        } else {
-            Log.e("log_tag", "Error in creating fragment");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -185,9 +183,38 @@ public class ParkingActivity extends AppCompatActivity
             this.userNameText.setText(userName);
             this.carNumberText.setText("Car Number: " + carNumber);
             this.balanceText.setText("Balance: RM" + balance);
+
+            ParkingFragment fragmentParking = (ParkingFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            fragmentParking.showUserDetail(carNumber, balance);
         }
         else{
             logout();
         }
+    }
+
+    private void displayParkingFragment() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (parkingFragment.isAdded()) { // if the fragment is already in container
+            ft.show(parkingFragment);
+        } else { // fragment needs to be added to frame container
+            ft.add(R.id.content_frame, parkingFragment, "A");
+        }
+        // Hide fragment history
+        if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        // Commit changes
+        ft.commit();
+    }
+
+    private void displayHistoryFragment() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (historyFragment.isAdded()) { // if the fragment is already in container
+            ft.show(historyFragment);
+        } else { // fragment needs to be added to frame container
+            ft.add(R.id.content_frame, historyFragment, "A");
+        }
+        // Hide fragment parking
+        if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        // Commit changes
+        ft.commit();
     }
 }

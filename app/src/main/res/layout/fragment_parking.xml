@@ -5,8 +5,6 @@
     android:paddingTop="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,7 +107,7 @@
                 android:textSize="22sp" />
 
             <Spinner
-                android:id="@+id/textParkLocation"
+                android:id="@+id/spinnerParkLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="0dp"
@@ -118,9 +116,6 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="10dp"/>
         </LinearLayout>
-
-
-
     </LinearLayout>
 
     <TextView
@@ -131,7 +126,7 @@
         android:textColor="#141316"
         android:layout_above="@id/textTimeElapsed"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp" />
+        android:textSize="25sp"/>
 
     <TextView
         android:id="@+id/textTimeElapsed"
@@ -158,7 +153,4 @@
         android:textColor="#FFF"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-
-
 </RelativeLayout>

@@ -12,7 +12,7 @@
         android:layout_marginTop="6dp"
         android:layout_marginLeft="6dp"
         android:text="Parking History"
-        android:textColor="@drawable/back"
+        android:textColor="#000"
         android:fontFamily="sans-serif-condensed"
         android:textStyle="normal"/>
 
