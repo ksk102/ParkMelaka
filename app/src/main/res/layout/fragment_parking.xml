@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="0:00 hours"
+        android:text="0:00:00 hours"
         android:textColor="#141316"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -153,4 +153,19 @@
         android:textColor="#FFF"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonEnd"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_end"
+        android:padding="6dp"
+        android:text="End Parking"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 </RelativeLayout>
