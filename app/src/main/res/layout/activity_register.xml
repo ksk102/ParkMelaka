@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="20dp"
+        android:layout_width="183dp"
+        android:layout_height="210dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/newusername"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#11000000"
+        android:fontFamily="sans-serif"
+        android:focusable="true"
+        android:hint="Name"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#dae1ed"
+        android:layout_below="@+id/imageView"
+        android:paddingLeft="4dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:textColorHighlight="#ff7eff15" />
+
+    <TextView
+        android:id="@+id/textErrorName"
+        android:layout_below="@id/newusername"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="#dae1ed"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/newEmail"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#11000000"
+        android:fontFamily="sans-serif"
+        android:focusable="true"
+        android:hint="Email Address"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#dae1ed"
+        android:layout_below="@+id/textErrorName"
+        android:paddingLeft="4dp"
+        android:drawableLeft="@drawable/ic_email"
+        android:textColorHighlight="#ff7eff15" />
+
+    <TextView
+        android:id="@+id/textErrorEmail"
+        android:layout_below="@id/newEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:textColor="#dae1ed"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+
+
+    <EditText
+        android:id="@+id/newPassword"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#11000000"
+        android:layout_below="@id/textErrorEmail"
+        android:textColorHint="#FFFFFF"
+        android:paddingLeft="4dp"
+        android:fontFamily="sans-serif"
+        android:ems="10"
+        android:textColor="#dae1ed"
+        android:hint="Password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textErrorPassword"
+        android:layout_below="@id/newPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:textColor="#dae1ed"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#11000000"
+        android:layout_below="@id/textErrorPassword"
+        android:textColorHint="#FFFFFF"
+        android:paddingLeft="4dp"
+        android:fontFamily="sans-serif"
+        android:ems="10"
+        android:textColor="#dae1ed"
+        android:hint="Confirm Password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textErrorPassword2"
+        android:layout_below="@id/confirmPassword"
+        android:layout_width="280dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:textColor="#dae1ed"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/newCarPlate"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#11000000"
+        android:fontFamily="sans-serif"
+        android:focusable="true"
+        android:hint="Car Plate Number"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#dae1ed"
+        android:layout_below="@+id/textErrorPassword2"
+        android:paddingLeft="4dp"
+        android:drawableLeft="@drawable/ic_car_plate_white"
+        android:textColorHighlight="#ff7eff15" />
+
+
+
+    <TextView
+        android:id="@+id/textErrorCar"
+        android:layout_below="@id/newCarPlate"
+        android:layout_centerHorizontal="true"
+        android:layout_width="280dp"
+        android:paddingLeft="8dp"
+        android:layout_height="wrap_content"
+        android:text="enter valid"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/newButtonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_register"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/textErrorCar"
+        android:paddingBottom="6dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="6dp"
+        android:textColor="#0e0e0f"
+        android:text="Register"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="24sp" />
+
+</RelativeLayout>

@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_car"
+                android:drawableStart="@drawable/ic_blue_car"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="9dp"
                 android:text="  Car No    : "
@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_money"
+                android:drawableStart="@drawable/ic_y_money"
                 android:text="  Balance  : "
                 android:textColor="#161519"
                 android:textSize="22sp"
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="9dp"
-                android:drawableStart="@drawable/ic_location"
+                android:drawableStart="@drawable/ic_red_location"
                 android:text="  Location : "
                 android:textColor="#161519"
                 android:textSize="22sp" />
