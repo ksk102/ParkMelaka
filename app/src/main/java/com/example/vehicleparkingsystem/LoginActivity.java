@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
         }
 
         if(success.equals("1")){
-            if(userExist != null){
+            if(userExist != null && !userExist.isEmpty() && !userExist.equals("null")){
 
                 SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
                 SaveSharedPreference.setLoggedInId(getApplicationContext(), userExist);
