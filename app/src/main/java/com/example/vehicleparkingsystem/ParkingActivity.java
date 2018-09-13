@@ -193,6 +193,9 @@ public class ParkingActivity extends AppCompatActivity
     }
 
     private void displayParkingFragment() {
+
+        setTitle("ParkMelaka");
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (parkingFragment.isAdded()) { // if the fragment is already in container
             ft.show(parkingFragment);
@@ -207,6 +210,9 @@ public class ParkingActivity extends AppCompatActivity
     }
 
     private void displayHistoryFragment() {
+
+        setTitle("Parking History");
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (historyFragment.isAdded()) { // if the fragment is already in container
             ft.show(historyFragment);
@@ -221,6 +227,9 @@ public class ParkingActivity extends AppCompatActivity
     }
 
     private void displayParkedFragment(){
+
+        setTitle("Payment Summary");
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (parkedFragment.isAdded()) { // if the fragment is already in container
             ft.show(parkedFragment);
