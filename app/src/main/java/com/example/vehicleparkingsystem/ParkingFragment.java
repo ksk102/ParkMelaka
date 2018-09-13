@@ -245,22 +245,28 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
     }
 
     private void startCounter(){
-        /* API */
-        // get user id
-        String userId = SaveSharedPreference.getLoggedId(getContext());
 
-        // get selected location id
-        StringWithTag swt = (StringWithTag) parkLocationSpinner.getSelectedItem();
-        Integer key = (Integer) swt.tag;
+        if(balanceAmount < 10){
+            Toast.makeText(getActivity(), "You need to have a minimum of RM10 to start parking!", Toast.LENGTH_LONG).show();
+        }
+        else{
+            /* API */
+            // get user id
+            String userId = SaveSharedPreference.getLoggedId(getContext());
 
-        // prepare parameters
-        HashMap<String, String> params = new HashMap<>();
-        params.put("user_id", userId);
-        params.put("parking_location", key.toString());
+            // get selected location id
+            StringWithTag swt = (StringWithTag) parkLocationSpinner.getSelectedItem();
+            Integer key = (Integer) swt.tag;
 
-        //Calling the startTransaction API
-        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_START_TRANSACTION, params, GlobalConstants.CODE_POST_REQUEST, progressBar, this);
-        request.execute();
+            // prepare parameters
+            HashMap<String, String> params = new HashMap<>();
+            params.put("user_id", userId);
+            params.put("parking_location", key.toString());
+
+            //Calling the startTransaction API
+            PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_START_TRANSACTION, params, GlobalConstants.CODE_POST_REQUEST, progressBar, this);
+            request.execute();
+        }
     }
 
     private Runnable updateTimerThread = new Runnable() {
