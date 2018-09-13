@@ -254,4 +254,16 @@ public class ParkingActivity extends AppCompatActivity
     public void enableOkButton(){
         displayParkingFragment();
     }
+
+    @Override
+    public void refreshBalance(double balance){
+        this.balanceText.setText("Balance: RM" + String.format("%.2f", balance));
+
+        parkingFragment.refreshBalance(balance);
+    }
+
+    @Override
+    public void resetParkingFragment(){
+        parkingFragment.resetEntry();
+    }
 }

@@ -116,7 +116,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
 
     void showUserDetail(String carNumber, String balance){
             parkCarNumberText.setText(carNumber);
-            parkBalanceText.setText(balance);
+            parkBalanceText.setText("RM" + balance);
     }
 
     private void getLocation(){
@@ -229,7 +229,6 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
 
                     startButton.setVisibility(View.VISIBLE);
                     endButton.setVisibility(View.GONE);
-                    parkLocationSpinner.setEnabled(true);
 
                     listener.fragmentCallBack(object);
                 }
@@ -271,7 +270,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
             secs = secs % 60;
             mins = mins % 60;
 
-            timeElapsedText.setText(hours + ":" + String.format("%02d", mins) + ":" + String.format("%02d", secs) + " hours");
+            timeElapsedText.setText(hours + ":" + String.format("%02d", mins) + ":" + String.format("%02d", secs));
             customHandler.postDelayed(this, 1000);
         }
     };
@@ -288,5 +287,20 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
         //Calling the endTransaction API
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_END_TRANSACTION, params, GlobalConstants.CODE_POST_REQUEST, progressBar, this);
         request.execute();
+    }
+
+    public void refreshBalance(double balance){
+        parkBalanceText.setText("RM" + String.format("%.2f", balance));
+    }
+
+    public void resetEntry(){
+        startTimeTextText.setVisibility(View.GONE);
+        timeTextText.setVisibility(View.VISIBLE);
+        startTimeText.setVisibility(View.GONE);
+        timeText.setVisibility(View.VISIBLE);
+
+        parkLocationSpinner.setEnabled(true);
+
+        timeElapsedText.setText("0:00:00");
     }
 }
