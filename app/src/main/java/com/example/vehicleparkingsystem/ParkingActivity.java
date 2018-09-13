@@ -3,8 +3,6 @@ package com.example.vehicleparkingsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,12 +24,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class ParkingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted {
+        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack {
 
     private ProgressBar progressBar;
     private TextView userNameText, carNumberText, balanceText;
     private ParkingFragment parkingFragment;
     private HistoryFragment historyFragment;
+    private ParkedFragment parkedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class ParkingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking);
 
-        // Header Nagigation Bar
+        // Header Navigation Bar
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerNavView = navigationView.getHeaderView(0);
 
@@ -69,6 +68,8 @@ public class ParkingActivity extends AppCompatActivity
         // show the content
         parkingFragment = new ParkingFragment();
         historyFragment = new HistoryFragment();
+        parkedFragment = new ParkedFragment();
+
         displayParkingFragment();
     }
 
@@ -184,8 +185,7 @@ public class ParkingActivity extends AppCompatActivity
             this.carNumberText.setText("Car Number: " + carNumber);
             this.balanceText.setText("Balance: RM" + balance);
 
-            ParkingFragment fragmentParking = (ParkingFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
-            fragmentParking.showUserDetail(carNumber, balance);
+            parkingFragment.showUserDetail(carNumber, balance);
         }
         else{
             logout();
@@ -201,8 +201,9 @@ public class ParkingActivity extends AppCompatActivity
         }
         // Hide fragment history
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         // Commit changes
-        ft.commit();
+        ft.commitNow();
     }
 
     private void displayHistoryFragment() {
@@ -210,11 +211,38 @@ public class ParkingActivity extends AppCompatActivity
         if (historyFragment.isAdded()) { // if the fragment is already in container
             ft.show(historyFragment);
         } else { // fragment needs to be added to frame container
-            ft.add(R.id.content_frame, historyFragment, "A");
+            ft.add(R.id.content_frame, historyFragment, "B");
         }
         // Hide fragment parking
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         // Commit changes
-        ft.commit();
+        ft.commitNow();
+    }
+
+    private void displayParkedFragment(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (parkedFragment.isAdded()) { // if the fragment is already in container
+            ft.show(parkedFragment);
+        } else { // fragment needs to be added to frame container
+            ft.add(R.id.content_frame, parkedFragment, "C");
+        }
+        // Hide fragment parking
+        if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        // Commit changes
+        ft.commitNow();
+    }
+
+    @Override
+    public void fragmentCallBack(JSONObject object) {
+        displayParkedFragment();
+
+        parkedFragment.endTransactionCallBack(object);
+    }
+
+    @Override
+    public void enableOkButton(){
+        displayParkingFragment();
     }
 }
