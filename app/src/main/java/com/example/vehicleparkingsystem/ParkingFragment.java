@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vehicleparkingsystem.utils.SaveSharedPreference;
 import com.example.vehicleparkingsystem.utils.StringWithTag;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 public class ParkingFragment extends Fragment implements OnTaskCompleted{
 
+    private double balanceAmount;
     private View rootView;
     private TextView parkCarNumberText, parkBalanceText;
     private TextView timeElapsedText;
@@ -115,8 +117,10 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
     }
 
     void showUserDetail(String carNumber, String balance){
-            parkCarNumberText.setText(carNumber);
-            parkBalanceText.setText("RM" + balance);
+        parkCarNumberText.setText(carNumber);
+        parkBalanceText.setText("RM" + balance);
+
+        balanceAmount = Double.parseDouble(balance);
     }
 
     private void getLocation(){
