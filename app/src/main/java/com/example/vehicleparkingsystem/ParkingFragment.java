@@ -36,6 +36,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
     private TextView timeElapsedText;
     private TextView timeTextText, startTimeTextText, timeText, startTimeText;
     private Spinner parkLocationSpinner;
+    private TextView parkLocationText;
     private ProgressBar progressBar;
     private Button startButton, endButton;
     private long startTime = 0L;
@@ -85,6 +86,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
         parkCarNumberText = getActivity().findViewById(R.id.textParkCarNumber);
         parkBalanceText = getActivity().findViewById(R.id.textParkBalance);
         parkLocationSpinner = getActivity().findViewById(R.id.spinnerParkLocation);
+        parkLocationText = getActivity().findViewById(R.id.textParkLocation);
         startButton = getActivity().findViewById(R.id.buttonStart);
         endButton = getActivity().findViewById(R.id.buttonEnd);
 
@@ -96,6 +98,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
         timeElapsedText = getActivity().findViewById(R.id.textTimeElapsed);
 
         getLocation();
+        ifParkingStarted();
     }
 
     @Override
@@ -203,19 +206,17 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
                 }
 
                 if(success.equals("1")){
-                    startTime = SystemClock.uptimeMillis();
-                    customHandler.postDelayed(updateTimerThread, 0);
 
-                    startButton.setVisibility(View.GONE);
-                    endButton.setVisibility(View.VISIBLE);
-                    parkLocationSpinner.setEnabled(false);
+                    startTime = SystemClock.uptimeMillis();
+                    SaveSharedPreference.setStartTimeExists(getActivity(), true);
+                    SaveSharedPreference.setStartTime(getActivity(), startTime);
+                    SaveSharedPreference.setStartTime(getActivity(), timeText.getText().toString());
+                    SaveSharedPreference.setParkingLocation(getActivity(), parkLocationSpinner.getSelectedItem().toString());
 
                     startTimeText.setText(timeText.getText());
+                    parkLocationText.setText(parkLocationSpinner.getSelectedItem().toString());
 
-                    startTimeTextText.setVisibility(View.VISIBLE);
-                    timeTextText.setVisibility(View.GONE);
-                    startTimeText.setVisibility(View.VISIBLE);
-                    timeText.setVisibility(View.GONE);
+                    setParkingStart();
                 }
 
                 break;
@@ -309,8 +310,43 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
         startTimeText.setVisibility(View.GONE);
         timeText.setVisibility(View.VISIBLE);
 
-        parkLocationSpinner.setEnabled(true);
+        parkLocationSpinner.setVisibility(View.VISIBLE);
+        parkLocationText.setVisibility(View.GONE);
 
         timeElapsedText.setText("0:00:00");
+
+        SaveSharedPreference.setStartTimeExists(getActivity(), false);
+    }
+
+    private boolean isParkingStarted(){
+        if(SaveSharedPreference.getStartTimeExists(getActivity())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ifParkingStarted(){
+        if(isParkingStarted()){
+            startTime = SaveSharedPreference.getStartTime(getActivity());
+            startTimeText.setText(SaveSharedPreference.getStartTimeString(getActivity()));
+            parkLocationText.setText(SaveSharedPreference.getParkingLocation(getActivity()));
+
+            setParkingStart();
+        }
+    }
+
+    private void setParkingStart(){
+        customHandler.postDelayed(updateTimerThread, 0);
+
+        startButton.setVisibility(View.GONE);
+        endButton.setVisibility(View.VISIBLE);
+        parkLocationSpinner.setVisibility(View.GONE);
+        parkLocationText.setVisibility(View.VISIBLE);
+
+        startTimeTextText.setVisibility(View.VISIBLE);
+        timeTextText.setVisibility(View.GONE);
+        startTimeText.setVisibility(View.VISIBLE);
+        timeText.setVisibility(View.GONE);
     }
 }

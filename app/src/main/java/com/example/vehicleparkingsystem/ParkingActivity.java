@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vehicleparkingsystem.utils.SaveSharedPreference;
 
@@ -131,11 +132,17 @@ public class ParkingActivity extends AppCompatActivity
     }
 
     private void logout(){
-        SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
+        if(SaveSharedPreference.getStartTimeExists(getApplicationContext())){
+            Toast.makeText(getApplicationContext(), "You need to End Parking first before logout!", Toast.LENGTH_LONG).show();
+        }
+        else{
+            SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
+            SaveSharedPreference.setStartTimeExists(getApplicationContext(), false);
 
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     private void getUserDetail(){
