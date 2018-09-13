@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/back"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/formLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible">
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/editPassword"
+        android:background="#11000000"
+        android:fontFamily="sans-serif"
+        android:focusable="true"
+        android:hint="Email Address"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#dae1ed"
+        android:paddingLeft="4dp"
+        android:drawableLeft="@drawable/ic_action_email"
+        android:textColorHighlight="#ff7eff15" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#11000000"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColorHint="#FFFFFF"
+        android:paddingLeft="4dp"
+        android:fontFamily="sans-serif"
+        android:ems="10"
+        android:textColor="#dae1ed"
+        android:hint="Password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textError"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignRight="@+id/editPassword"
+        android:layout_below="@+id/editPassword"
+        android:textColor="#dae1ed"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textError"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button"
+        android:paddingBottom="6dp"
+        android:paddingLeft="46dp"
+        android:paddingRight="46dp"
+        android:paddingTop="6dp"
+        android:textColor="#0e0e0f"
+        android:text="Login"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/buttonLogin"
+        android:text="Register Now"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:background="?android:attr/selectableItemBackground"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="183dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/editEmail"
+        app:srcCompat="@drawable/logo" />
+
+</RelativeLayout>
