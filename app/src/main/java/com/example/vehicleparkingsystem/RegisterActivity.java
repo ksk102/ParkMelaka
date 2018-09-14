@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.vehicleparkingsystem.utils.EntryValidation;
+import com.example.vehicleparkingsystem.utils.HashingAlgorithm;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,8 +62,6 @@ public class RegisterActivity extends AppCompatActivity implements OnTaskComplet
                 && validate.validatePassword(passwordEdit)
                 && validate.validateConfirmPassword(passwordEdit, confirmPasswordEdit)
                 && validate.validateCarPlateNumber(carPlateEdit)){
-            Log.i("ksk_tag", "ok");
-
             validateEmailExists(emailEdit);
         }
     }
@@ -139,6 +138,9 @@ public class RegisterActivity extends AppCompatActivity implements OnTaskComplet
         String email = emailEdit.getText().toString().trim();
         String password = passwordEdit.getText().toString();
         String carPlate = carPlateEdit.getText().toString();
+
+        // hash the password
+        password = HashingAlgorithm.MD5(password);
 
         HashMap<String, String> params = new HashMap<>();
         params.put("name", name);

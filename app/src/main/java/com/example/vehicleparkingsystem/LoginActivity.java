@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.vehicleparkingsystem.utils.HashingAlgorithm;
 import com.example.vehicleparkingsystem.utils.SaveSharedPreference;
 
 import org.json.JSONException;
@@ -81,6 +82,9 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
     private void verifyLogin(){
         String email = emailEdit.getText().toString().trim();
         String password = passwordEdit.getText().toString().trim();
+
+        // hash the password
+        password = HashingAlgorithm.MD5(password);
 
         HashMap<String, String> params = new HashMap<>();
         params.put("email", email);
