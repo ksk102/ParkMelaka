@@ -3,8 +3,6 @@ package com.example.vehicleparkingsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vehicleparkingsystem.utils.SaveSharedPreference;
 
@@ -26,12 +25,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class ParkingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted {
+        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack {
 
     private ProgressBar progressBar;
     private TextView userNameText, carNumberText, balanceText;
     private ParkingFragment parkingFragment;
     private HistoryFragment historyFragment;
+    private ParkedFragment parkedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class ParkingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking);
 
-        // Header Nagigation Bar
+        // Header Navigation Bar
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerNavView = navigationView.getHeaderView(0);
 
@@ -69,6 +69,8 @@ public class ParkingActivity extends AppCompatActivity
         // show the content
         parkingFragment = new ParkingFragment();
         historyFragment = new HistoryFragment();
+        parkedFragment = new ParkedFragment();
+
         displayParkingFragment();
     }
 
@@ -130,11 +132,17 @@ public class ParkingActivity extends AppCompatActivity
     }
 
     private void logout(){
-        SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
+        if(SaveSharedPreference.getStartTimeExists(getApplicationContext())){
+            Toast.makeText(getApplicationContext(), "You need to End Parking first before logout!", Toast.LENGTH_LONG).show();
+        }
+        else{
+            SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
+            SaveSharedPreference.setStartTimeExists(getApplicationContext(), false);
 
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     private void getUserDetail(){
@@ -184,8 +192,7 @@ public class ParkingActivity extends AppCompatActivity
             this.carNumberText.setText("Car Number: " + carNumber);
             this.balanceText.setText("Balance: RM" + balance);
 
-            ParkingFragment fragmentParking = (ParkingFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
-            fragmentParking.showUserDetail(carNumber, balance);
+            parkingFragment.showUserDetail(carNumber, balance);
         }
         else{
             logout();
@@ -193,6 +200,9 @@ public class ParkingActivity extends AppCompatActivity
     }
 
     private void displayParkingFragment() {
+
+        setTitle("ParkMelaka");
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (parkingFragment.isAdded()) { // if the fragment is already in container
             ft.show(parkingFragment);
@@ -201,20 +211,66 @@ public class ParkingActivity extends AppCompatActivity
         }
         // Hide fragment history
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         // Commit changes
-        ft.commit();
+        ft.commitNow();
     }
 
     private void displayHistoryFragment() {
+
+        setTitle("Parking History");
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (historyFragment.isAdded()) { // if the fragment is already in container
             ft.show(historyFragment);
         } else { // fragment needs to be added to frame container
-            ft.add(R.id.content_frame, historyFragment, "A");
+            ft.add(R.id.content_frame, historyFragment, "B");
         }
         // Hide fragment parking
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         // Commit changes
-        ft.commit();
+        ft.commitNow();
+    }
+
+    private void displayParkedFragment(){
+
+        setTitle("Payment Summary");
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (parkedFragment.isAdded()) { // if the fragment is already in container
+            ft.show(parkedFragment);
+        } else { // fragment needs to be added to frame container
+            ft.add(R.id.content_frame, parkedFragment, "C");
+        }
+        // Hide fragment parking
+        if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        // Commit changes
+        ft.commitNow();
+    }
+
+    @Override
+    public void fragmentCallBack(JSONObject object) {
+        displayParkedFragment();
+
+        parkedFragment.endTransactionCallBack(object);
+    }
+
+    @Override
+    public void enableOkButton(){
+        displayParkingFragment();
+    }
+
+    @Override
+    public void refreshBalance(double balance){
+        this.balanceText.setText("Balance: RM" + String.format("%.2f", balance));
+
+        parkingFragment.refreshBalance(balance);
+    }
+
+    @Override
+    public void resetParkingFragment(){
+        parkingFragment.resetEntry();
     }
 }

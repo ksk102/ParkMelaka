@@ -1,35 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/card_layout"
-        android:background="@drawable/whiteback">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/textTimeText"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:drawableStart="@drawable/ic_time"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="22dp"
-                android:text="  Time          : "
-                android:textColor="#161519"
-                android:textSize="22sp"/>
 
             <TextView
-                android:id="@+id/textStartTimeText"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:drawableStart="@drawable/ic_time"
@@ -37,31 +21,69 @@
                 android:layout_marginTop="22dp"
                 android:text="  Start Time : "
                 android:textColor="#161519"
-                android:textSize="22sp"
-                android:visibility="gone"/>
-
-            <TextClock
-                android:id="@+id/textTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textSize="22sp"
-                />
+                android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/textStartTime"
+                android:id="@+id/textParkedStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="24dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textSize="22sp"
-                android:visibility="gone"/>
+                android:textSize="22sp"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:text="  End Time : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textParkedEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="9dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:text="  Duration : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textParkedDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="9dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,36 +103,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textParkCarNumber"
+                android:id="@+id/textParkedCarNumber"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textSize="22sp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_y_money"
-                android:text="  Balance     : "
-                android:textColor="#161519"
-                android:textSize="22sp"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="9dp"
-                android:id="@+id/balance_label"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textParkBalance"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#161519"
                 android:textSize="22sp"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="10dp"/>
@@ -131,8 +126,8 @@
                 android:textColor="#161519"
                 android:textSize="22sp" />
 
-            <Spinner
-                android:id="@+id/spinnerParkLocation"
+            <TextView
+                android:id="@+id/textParkedLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="0dp"
@@ -140,77 +135,73 @@
                 android:textSize="22sp"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_y_money"
+                android:text="  Amount Charged    : "
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textParkLocation"
+                android:id="@+id/textParkedCharged"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:textColor="#161519"
                 android:textSize="22sp"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"/>
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_y_money"
+                android:text="  Balance Left    : "
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:id="@+id/balance_label"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textParkedBalance"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textParked"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Parked"
-        android:textColor="#141316"
-        android:layout_gravity="center"
-        android:textSize="25sp"
-        />
-
-    <TextView
-        android:id="@+id/textTimeElapsed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="6dp"
-        android:text="0:00:00"
-        android:textColor="#141316"
-        android:textSize="50sp"
-        />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/buttonStart"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/button_start"
-            android:padding="6dp"
-            android:text="Start Parking"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:textColor="#FFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonEnd"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/button_end"
-            android:padding="6dp"
-            android:text="End Parking"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:textColor="#FFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="invisible"/>
-    </RelativeLayout>
-
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonParkedOk"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button"
+        android:padding="6dp"
+        android:text="OK"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+</RelativeLayout>
