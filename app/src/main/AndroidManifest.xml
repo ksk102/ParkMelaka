@@ -31,7 +31,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="User Registration">
+
+        </activity>
     </application>
 
 </manifest>

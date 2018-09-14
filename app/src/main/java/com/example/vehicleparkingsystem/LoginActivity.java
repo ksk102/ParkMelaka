@@ -41,9 +41,11 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
 
 
         Button loginButton;
+        Button registerButton;
         RelativeLayout loginForm;
 
         loginButton = findViewById(R.id.buttonLogin);
+        registerButton = findViewById(R.id.buttonRegister);
         emailEdit = findViewById(R.id.editEmail);
         passwordEdit = findViewById(R.id.editPassword);
         errorText  = findViewById(R.id.textError);
@@ -64,6 +66,16 @@ public class LoginActivity extends AppCompatActivity implements OnTaskCompleted{
                 verifyLogin();
             }
         });
+
+        registerButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 
     private void verifyLogin(){

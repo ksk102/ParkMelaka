@@ -319,11 +319,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
     }
 
     private boolean isParkingStarted(){
-        if(SaveSharedPreference.getStartTimeExists(getActivity())) {
-            return true;
-        }
-
-        return false;
+        return SaveSharedPreference.getStartTimeExists(getActivity());
     }
 
     private void ifParkingStarted(){
