@@ -23,7 +23,8 @@
         android:textColor="#dae1ed"
         android:paddingLeft="4dp"
         android:drawableLeft="@drawable/ic_action_email"
-        android:textColorHighlight="#ff7eff15" />
+        android:textColorHighlight="#ff7eff15"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/editPassword"
