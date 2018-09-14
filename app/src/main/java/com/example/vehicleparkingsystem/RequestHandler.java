@@ -12,6 +12,7 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
@@ -64,9 +65,16 @@ public class RequestHandler {
                     sb.append(response);
                 }
             }
+            else{
+                sb.append("{\"success\":\"0\",\"message\":\"Login Failed! Please check your internet connection\"}");
+            }
 
         }
         catch(ConnectException e){
+            String returnString = "{\"success\":\"0\",\"message\":\"Login Failed! Please check your internet connection\"}";
+            return returnString;
+        }
+        catch(UnknownHostException e){
             String returnString = "{\"success\":\"0\",\"message\":\"Login Failed! Please check your internet connection\"}";
             return returnString;
         }
