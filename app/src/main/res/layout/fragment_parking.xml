@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="16dp"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -122,50 +123,56 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="30dp"
         android:text="Parked"
         android:textColor="#141316"
-        android:layout_above="@id/textTimeElapsed"
-        android:layout_centerHorizontal="true"
-        android:textSize="25sp"/>
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        />
 
     <TextView
         android:id="@+id/textTimeElapsed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp"
         android:text="0:00:00 hours"
         android:textColor="#141316"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:textSize="50sp"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="240dp"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/button_start"
-        android:padding="6dp"
-        android:text="Start Parking"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/buttonStart"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/button_start"
+            android:padding="6dp"
+            android:text="Start Parking"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/buttonEnd"
-        android:layout_width="240dp"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/button_end"
-        android:padding="6dp"
-        android:text="End Parking"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="invisible"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/buttonEnd"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/button_end"
+            android:padding="6dp"
+            android:text="End Parking"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+</LinearLayout>

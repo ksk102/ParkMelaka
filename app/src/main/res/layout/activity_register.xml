@@ -11,10 +11,12 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_marginTop="20dp"
-        android:layout_width="183dp"
-        android:layout_height="210dp"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/logo" />
 
     <EditText
@@ -25,11 +27,12 @@
         android:background="#11000000"
         android:fontFamily="sans-serif"
         android:focusable="true"
+        android:layout_marginTop="20dp"
         android:hint="Name"
         android:textColorHint="#FFFFFF"
         android:textColor="#dae1ed"
         android:layout_below="@+id/imageView"
-        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
         android:drawableLeft="@drawable/ic_username"
         android:textColorHighlight="#ff7eff15" />
 
@@ -166,7 +169,8 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_register"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/textErrorCar"
+        android:layout_marginBottom="18dp"
+        android:layout_alignParentBottom="true"
         android:paddingBottom="6dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
