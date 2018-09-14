@@ -6,10 +6,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.vehicleparkingsystem.utils.EntryValidation;
 
-public class RegisterActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+public class RegisterActivity extends AppCompatActivity implements OnTaskCompleted {
+
+    ProgressBar progressBar;
+    EditText userNameEdit, emailEdit, passwordEdit, confirmPasswordEdit, carPlateEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void validateEntry(){
-        EditText userNameEdit, emailEdit, passwordEdit, confirmPasswordEdit, carPlateEdit;
-
+        progressBar = findViewById(R.id.progressBar);
         userNameEdit = findViewById(R.id.editUserName);
         emailEdit = findViewById(R.id.editEmail);
         passwordEdit = findViewById(R.id.editPassword);
@@ -53,6 +62,92 @@ public class RegisterActivity extends AppCompatActivity {
                 && validate.validateConfirmPassword(passwordEdit, confirmPasswordEdit)
                 && validate.validateCarPlateNumber(carPlateEdit)){
             Log.i("ksk_tag", "ok");
+
+            validateEmailExists(emailEdit);
         }
+    }
+
+    private void validateEmailExists(EditText emailEdit){
+        String email = emailEdit.getText().toString().trim();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("email", email);
+
+        //Calling the getUserPassword API
+        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CHECK_EMAIL_EXISTS, params, GlobalConstants.CODE_POST_REQUEST, progressBar, this);
+        request.execute();
+    }
+
+    public void onTaskCompleted(JSONObject object){
+        String callback = "";
+
+        try
+        {
+            callback = object.getString("callback");
+        }
+        catch (JSONException e){
+            Log.e("log_tag", "Error parsing data " + e.toString());
+        }
+
+        switch (callback) {
+            case "checkEmailExists":
+
+                String success = "";
+                String exists = "";
+
+                try{
+                    success = object.getString("success");
+                    exists = object.getString("exists");
+                }
+                catch(JSONException e){
+                    Log.e("log_tag", "Error parsing data " + e.toString());
+                }
+
+                if(success.equals("1")){
+
+                    if(exists.equals("0")){
+                        registerUser();
+                    }
+                    else{
+                        emailEdit.requestFocus();
+                        emailEdit.setError("This email is already registered");
+                    }
+                }
+
+                break;
+
+            case "createUser":
+
+                success = "";
+
+                try{
+                    success = object.getString("success");
+                }
+                catch(JSONException e){
+                    Log.e("log_tag", "Error parsing data " + e.toString());
+                }
+
+                if(success.equals("1")){
+                    Toast.makeText(getApplicationContext(), "Successfully registered", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+        }
+    }
+
+    private void registerUser(){
+        String name = userNameEdit.getText().toString().trim();
+        String email = emailEdit.getText().toString().trim();
+        String password = passwordEdit.getText().toString();
+        String carPlate = carPlateEdit.getText().toString();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("name", name);
+        params.put("email", email);
+        params.put("password", password);
+        params.put("carPlate", carPlate);
+
+        //Calling the getUserPassword API
+        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_USER, params, GlobalConstants.CODE_POST_REQUEST, progressBar, this);
+        request.execute();
     }
 }
