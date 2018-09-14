@@ -84,7 +84,7 @@ public class EntryValidation {
 
             return  false;
         }
-        else if(!carPlate.matches("^[A-z]{3}( )?[0-9]{1,4}( )?[A-z]?$")){
+        else if(!carPlate.matches("^[A-z]{0,3}( )?[0-9]{1,4}( )?[A-z]?$")){
             carPlateEdit.requestFocus();
             carPlateEdit.setError("Malaysia Car Plate Number only");
 
