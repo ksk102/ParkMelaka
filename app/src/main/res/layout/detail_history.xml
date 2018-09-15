@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="22dp"
+                android:text="  Start Time : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textDetailStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="24dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:text="  End Time : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textDetailEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="9dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:text="  Duration : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textDetailDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="9dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_blue_car"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:text="  Car No       : "
+                android:textColor="#161519"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDetailCarNumber"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:drawableStart="@drawable/ic_red_location"
+                android:text="  Location    : "
+                android:textColor="#161519"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textDetailLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
+                android:paddingRight="5dp"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_y_money"
+                android:text="  Amount Charged    : "
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDetailCharged"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="#161519"
+                android:textSize="22sp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonDetailOk"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button"
+        android:padding="6dp"
+        android:text="OK"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

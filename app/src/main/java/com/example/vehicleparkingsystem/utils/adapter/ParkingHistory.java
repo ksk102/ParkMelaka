@@ -12,7 +12,11 @@ public class ParkingHistory {
 
     public String startDate;
     public String startTime;
+    public String endDate;
+    public String endTime;
+    public String carNo;
     public String location;
+    public String amount;
 
     private ParkingHistory(){
 
@@ -24,7 +28,11 @@ public class ParkingHistory {
         try {
             history.startDate = object.getString("startDate");
             history.startTime = object.getString("startTime");
+            history.endDate = object.getString("endDate");
+            history.endTime = object.getString("endTime");
+            history.carNo = object.getString("carNo");
             history.location = object.getString("location");
+            history.amount = object.getString("amount");
         }
         catch (JSONException e) {
             Log.e("log_tag", "Error parsing data " + e.toString());

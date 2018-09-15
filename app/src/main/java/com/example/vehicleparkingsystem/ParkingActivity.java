@@ -25,13 +25,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class ParkingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack {
+        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack, HistoryFragment.FragmentCallBack, HistoryDetailFragment.FragmentCallBack {
 
     private ProgressBar progressBar;
     private TextView userNameText, carNumberText, balanceText;
     private ParkingFragment parkingFragment;
     private HistoryFragment historyFragment;
     private ParkedFragment parkedFragment;
+    private HistoryDetailFragment historyDetailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class ParkingActivity extends AppCompatActivity
         parkingFragment = new ParkingFragment();
         historyFragment = new HistoryFragment();
         parkedFragment = new ParkedFragment();
+        historyDetailFragment = new HistoryDetailFragment();
 
         displayParkingFragment();
     }
@@ -212,6 +214,7 @@ public class ParkingActivity extends AppCompatActivity
         // Hide fragment history
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
         if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
+        if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
         // Commit changes
         ft.commitNow();
     }
@@ -230,6 +233,7 @@ public class ParkingActivity extends AppCompatActivity
         // Hide fragment parking
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
         if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
+        if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
         // Commit changes
         ft.commitNow();
     }
@@ -247,6 +251,25 @@ public class ParkingActivity extends AppCompatActivity
         // Hide fragment parking
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
+        // Commit changes
+        ft.commitNow();
+    }
+
+    private void displayHistoryDetailFragment(){
+
+        setTitle("Parking History");
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (historyDetailFragment.isAdded()) { // if the fragment is already in container
+            ft.show(historyDetailFragment);
+        } else { // fragment needs to be added to frame container
+            ft.add(R.id.content_frame, historyDetailFragment, "D");
+        }
+        // Hide fragment parking
+        if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        if (historyFragment.isAdded()) { ft.hide(historyFragment); }
+        if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         // Commit changes
         ft.commitNow();
     }
@@ -273,5 +296,17 @@ public class ParkingActivity extends AppCompatActivity
     @Override
     public void resetParkingFragment(){
         parkingFragment.resetEntry();
+    }
+
+    @Override
+    public void displayHistoryDetail(JSONObject object){
+        displayHistoryDetailFragment();
+
+        historyDetailFragment.getDetail(object);
+    }
+
+    @Override
+    public void enableDetailOkButton(){
+        displayHistoryFragment();
     }
 }

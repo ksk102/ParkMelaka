@@ -1,11 +1,13 @@
 package com.example.vehicleparkingsystem;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -25,8 +27,30 @@ public class HistoryFragment extends Fragment implements OnTaskCompleted {
     ArrayList<ParkingHistory> arrayOfHistory;
     HistoryAdapter adapter;
 
+    // Define the listener of the interface type
+    // listener will the activity instance containing fragment
+    private FragmentCallBack listener;
+
+    // Define the events that the fragment will use to communicate
+    public interface FragmentCallBack {
+        // This can be any number of events to be sent to the activity
+        void displayHistoryDetail(JSONObject object);
+    }
+
     public HistoryFragment(){
 
+    }
+
+    // Store the listener (activity) that will have events fired once the fragment is attached
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentCallBack) {
+            listener = (FragmentCallBack) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement HistoryFragment.FragmentCallBack");
+        }
     }
 
     @Override
@@ -41,7 +65,7 @@ public class HistoryFragment extends Fragment implements OnTaskCompleted {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-        View historyHeader = getLayoutInflater().inflate(R.layout.header_history, null);
+        final View historyHeader = getLayoutInflater().inflate(R.layout.header_history, null);
 
         // Construct the data source
         arrayOfHistory = new ArrayList<>();
@@ -53,6 +77,29 @@ public class HistoryFragment extends Fragment implements OnTaskCompleted {
         ListView listView = getActivity().findViewById(R.id.listHistory);
         listView.setAdapter(adapter);
         listView.addHeaderView(historyHeader);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                JSONObject historyDetail = new JSONObject();
+
+                try {
+                    historyDetail.put("startDate", arrayOfHistory.get((int) id).startDate);
+                    historyDetail.put("startTime", arrayOfHistory.get((int) id).startTime);
+                    historyDetail.put("endDate", arrayOfHistory.get((int) id).endDate);
+                    historyDetail.put("endTime", arrayOfHistory.get((int) id).endTime);
+                    historyDetail.put("carNo", arrayOfHistory.get((int) id).carNo);
+                    historyDetail.put("location", arrayOfHistory.get((int) id).location);
+                    historyDetail.put("amount", arrayOfHistory.get((int) id).amount);
+
+                } catch (JSONException e) {
+                    Log.e("log_tag", "Error parsing data " + e.toString());
+                }
+
+                listener.displayHistoryDetail(historyDetail);
+            }
+        });
 
         getHistoryList();
     }
