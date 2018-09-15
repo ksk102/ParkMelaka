@@ -64,7 +64,7 @@ public class SaveSharedPreference {
     }
 
     public static long getStartTime(Context context){
-        long startTime = SystemClock.uptimeMillis();
+        long startTime = SystemClock.elapsedRealtime();
 
         return getPreferences(context).getLong(START_TIME, startTime);
     }

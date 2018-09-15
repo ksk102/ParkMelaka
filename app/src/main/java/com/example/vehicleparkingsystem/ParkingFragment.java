@@ -207,7 +207,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
 
                 if(success.equals("1")){
 
-                    startTime = SystemClock.uptimeMillis();
+                    startTime = SystemClock.elapsedRealtime();
                     SaveSharedPreference.setStartTimeExists(getActivity(), true);
                     SaveSharedPreference.setStartTime(getActivity(), startTime);
                     SaveSharedPreference.setStartTime(getActivity(), timeText.getText().toString());
@@ -273,7 +273,7 @@ public class ParkingFragment extends Fragment implements OnTaskCompleted{
     private Runnable updateTimerThread = new Runnable() {
 
         public void run() {
-            long timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+            long timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
 
             int secs = (int) (timeInMilliseconds / 1000);
             int mins = secs / 60;
