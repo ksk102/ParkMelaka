@@ -104,7 +104,7 @@ public class HistoryDetailFragment extends Fragment {
         endTimeText.setText(endDate + " " + endTime);
         carNumberText.setText(carNo);
         locationText.setText(location);
-        amountText.setText(amount);
+        amountText.setText("RM" + amount);
 
         showDuration(startDate, startTime, endDate, endTime);
     }

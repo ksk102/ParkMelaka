@@ -9,6 +9,7 @@ public class Api {
     public static final String URL_START_TRANSACTION = ROOT_URL + "startTransaction";
     public static final String URL_END_TRANSACTION = ROOT_URL + "endTransaction";
     public static final String URL_UPDATE_BALANCE = ROOT_URL + "updateBalance";
+    public static final String URL_UPDATE_CHARGES = ROOT_URL + "updateCharges";
     public static final String URL_CHECK_EMAIL_EXISTS = ROOT_URL + "checkEmailExists";
     public static final String URL_CREATE_USER = ROOT_URL + "createUser";
     public static final String URL_GET_HISTORY_LIST = ROOT_URL + "getHistoryList";
