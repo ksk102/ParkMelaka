@@ -222,6 +222,7 @@ public class ParkingActivity extends AppCompatActivity
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (historyFragment.isAdded()) { // if the fragment is already in container
+            historyFragment.getHistoryList();
             ft.show(historyFragment);
         } else { // fragment needs to be added to frame container
             ft.add(R.id.content_frame, historyFragment, "B");
