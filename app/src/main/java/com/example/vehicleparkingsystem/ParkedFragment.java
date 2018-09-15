@@ -166,6 +166,7 @@ public class ParkedFragment extends Fragment implements OnTaskCompleted {
         parkedChargedText.setText("RM" + String.format("%.2f", amount));
         parkedBalanceText.setText("RM" + String.format("%.2f", balance));
 
+        updateAmountCharged(amount);
         updateBalance(balance);
     }
 
@@ -179,29 +180,52 @@ public class ParkedFragment extends Fragment implements OnTaskCompleted {
         request.execute();
     }
 
+    private void updateAmountCharged(Double amount){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userId", userId);
+        params.put("amount", amount.toString());
+
+        //Calling the getLocation API
+        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_UPDATE_CHARGES, params, GlobalConstants.CODE_POST_REQUEST, progressBar, this);
+        request.execute();
+    }
+
     @Override
     public void onTaskCompleted(JSONObject object){
-
         String success = "";
+        String callback = "";
 
         try{
-            success = object.getString("success");
+            callback = object.getString("callback");
         }
         catch(JSONException e){
             Log.e("log_tag", "Error parsing data " + e.toString());
         }
 
-        if(success.equals("1")){
+        switch(callback){
+            case "updateBalance":
 
-            listener.refreshBalance(balance);
-            listener.resetParkingFragment();
-
-            parkedOkButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view){
-                    listener.enableOkButton();
+                try{
+                    success = object.getString("success");
                 }
-            });
+                catch(JSONException e){
+                    Log.e("log_tag", "Error parsing data " + e.toString());
+                }
+
+                if(success.equals("1")){
+
+                    listener.refreshBalance(balance);
+                    listener.resetParkingFragment();
+
+                    parkedOkButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view){
+                            listener.enableOkButton();
+                        }
+                    });
+                }
+
+                break;
         }
     }
 }

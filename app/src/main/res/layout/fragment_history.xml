@@ -3,27 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_alignParentTop="true"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="6dp"
-        android:text="Parking History"
-        android:textColor="#000"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="normal"/>
+    <ListView
+        android:id="@+id/listHistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_below="@id/label"
-        android:layout_centerInParent="true"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="Edit fragment_history.xml to change the appearance"
-        android:id="@+id/textView2" />
+    </ListView>
 </RelativeLayout>
