@@ -13,4 +13,5 @@ public class Api {
     public static final String URL_CHECK_EMAIL_EXISTS = ROOT_URL + "checkEmailExists";
     public static final String URL_CREATE_USER = ROOT_URL + "createUser";
     public static final String URL_GET_HISTORY_LIST = ROOT_URL + "getHistoryList";
+    public static final String URL_TOP_UP = ROOT_URL + "topUp";
 }

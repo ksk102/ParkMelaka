@@ -14,9 +14,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/generalnotitle"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:theme="@style/generalnotitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +25,9 @@
         </activity>
         <activity
             android:name=".ParkingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_parking"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.example.vehicleparkingsystem.ParkingActivity" />
@@ -37,11 +37,10 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="User Registration"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".TopUpRequest"></activity>
     </application>
 
 </manifest>
