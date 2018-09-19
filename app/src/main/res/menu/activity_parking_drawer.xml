@@ -14,7 +14,7 @@
             android:title="@string/nav_parking_history" />
         <item
             android:id="@+id/nav_topUp"
-            android:icon="@drawable/ic_topUp"
+            android:icon="@drawable/ic_top_up"
             android:title="@string/nav_topUp" />
     </group>
 

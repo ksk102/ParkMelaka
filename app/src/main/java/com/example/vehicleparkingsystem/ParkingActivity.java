@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class ParkingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack, HistoryFragment.FragmentCallBack, HistoryDetailFragment.FragmentCallBack {
+        implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack, HistoryFragment.FragmentCallBack, HistoryDetailFragment.FragmentCallBack,TopUpRequest.FragmentCallBack {
 
     private ProgressBar progressBar;
     private TextView userNameText, carNumberText, balanceText;
@@ -33,6 +33,7 @@ public class ParkingActivity extends AppCompatActivity
     private HistoryFragment historyFragment;
     private ParkedFragment parkedFragment;
     private HistoryDetailFragment historyDetailFragment;
+    private TopUpRequest topUpRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class ParkingActivity extends AppCompatActivity
         historyFragment = new HistoryFragment();
         parkedFragment = new ParkedFragment();
         historyDetailFragment = new HistoryDetailFragment();
+        topUpRequest = new TopUpRequest();
 
         displayParkingFragment();
     }
@@ -126,6 +128,10 @@ public class ParkingActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_logout) {
             logout();
+        }
+        else if (id == R.id.nav_topUp) {
+            setTitle("Top Up");
+            displayTopUpFragment();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -215,6 +221,7 @@ public class ParkingActivity extends AppCompatActivity
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
         if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
+        if (topUpRequest.isAdded()) { ft.hide(topUpRequest); }
         // Commit changes
         ft.commitNow();
     }
@@ -231,6 +238,26 @@ public class ParkingActivity extends AppCompatActivity
             ft.add(R.id.content_frame, historyFragment, "B");
         }
         // Hide fragment parking
+        if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
+        if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
+        if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
+        if (topUpRequest.isAdded()) { ft.hide(topUpRequest); }
+        // Commit changes
+        ft.commitNow();
+    }
+
+    private void displayTopUpFragment() {
+
+        setTitle("Top Up");
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (topUpRequest.isAdded()) { // if the fragment is already in container
+            ft.show(topUpRequest);
+        } else { // fragment needs to be added to frame container
+            ft.add(R.id.content_frame, topUpRequest, "C");
+        }
+        // Hide fragment parking
+        if (historyFragment.isAdded()) { ft.hide(historyFragment); }
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
         if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
         if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
@@ -252,6 +279,7 @@ public class ParkingActivity extends AppCompatActivity
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
         if (historyDetailFragment.isAdded()) { ft.hide(historyDetailFragment); }
+        if (topUpRequest.isAdded()) { ft.hide(topUpRequest); }
         // Commit changes
         ft.commitNow();
     }
@@ -270,6 +298,7 @@ public class ParkingActivity extends AppCompatActivity
         if (parkingFragment.isAdded()) { ft.hide(parkingFragment); }
         if (historyFragment.isAdded()) { ft.hide(historyFragment); }
         if (parkedFragment.isAdded()) { ft.hide(parkedFragment); }
+        if (topUpRequest.isAdded()) { ft.hide(topUpRequest); }
         // Commit changes
         ft.commitNow();
     }
@@ -279,6 +308,11 @@ public class ParkingActivity extends AppCompatActivity
         displayParkedFragment();
 
         parkedFragment.endTransactionCallBack(object);
+    }
+
+    @Override
+    public void displayParkingActivity() {
+        displayParkingFragment();
     }
 
     @Override
