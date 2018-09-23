@@ -129,7 +129,7 @@ public class TopUpFragment extends Fragment implements OnTaskCompleted{
             }
         }
 
-        else if("topUp".equals(callback)) {
+        else if("createTopUpRequest".equals(callback)) {
             String success = "";
 
             try {
@@ -141,6 +141,9 @@ public class TopUpFragment extends Fragment implements OnTaskCompleted{
 
             if (success.equals("1")) {
                 Toast.makeText(getActivity().getApplicationContext(), "Successfully Requested", Toast.LENGTH_SHORT).show();
+                amountEdit.setText("");
+                emailEdit.setText("");
+
                 listener.displayParkingActivity();
             }
         }

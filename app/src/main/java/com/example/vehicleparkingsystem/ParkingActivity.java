@@ -27,6 +27,7 @@ import java.util.HashMap;
 public class ParkingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnTaskCompleted, ParkingFragment.FragmentCallBack, ParkedFragment.FragmentCallBack, HistoryFragment.FragmentCallBack, HistoryDetailFragment.FragmentCallBack,TopUpFragment.FragmentCallBack {
 
+    private NavigationView navigationView;
     private ProgressBar progressBar;
     private TextView userNameText, carNumberText, balanceText;
     private ParkingFragment parkingFragment;
@@ -42,7 +43,7 @@ public class ParkingActivity extends AppCompatActivity
         setContentView(R.layout.activity_parking);
 
         // Header Navigation Bar
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         View headerNavView = navigationView.getHeaderView(0);
 
         // Header Navigation Bar items
@@ -312,6 +313,11 @@ public class ParkingActivity extends AppCompatActivity
 
     @Override
     public void displayParkingActivity() {
+
+        // Set the item selected on nav bar
+        navigationView.setCheckedItem(R.id.nav_parking);
+        navigationView.setNavigationItemSelectedListener(this);
+
         displayParkingFragment();
     }
 
