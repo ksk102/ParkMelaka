@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/back"
-    tools:context=".TopUpRequest">
+    tools:context=".TopUpFragment">
 
     <ImageView
         android:id="@+id/imageView"

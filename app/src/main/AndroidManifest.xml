@@ -40,7 +40,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="User Registration"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".TopUpRequest"></activity>
+        <activity android:name=".TopUpFragment"></activity>
     </application>
 
 </manifest>

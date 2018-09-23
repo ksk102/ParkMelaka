@@ -36,7 +36,7 @@ public class ParkedFragment extends Fragment implements OnTaskCompleted {
     // Define the events that the fragment will use to communicate
     public interface FragmentCallBack {
         // This can be any number of events to be sent to the activity
-        void enableOkButton();
+        void goParkingFragment();
         void refreshBalance(double balance);
         void resetParkingFragment();
     }
@@ -220,7 +220,7 @@ public class ParkedFragment extends Fragment implements OnTaskCompleted {
                     parkedOkButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view){
-                            listener.enableOkButton();
+                            listener.goParkingFragment();
                         }
                     });
                 }
